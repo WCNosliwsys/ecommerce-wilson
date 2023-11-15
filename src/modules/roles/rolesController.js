@@ -8,8 +8,9 @@ export class RoleController {
   }
 
   async getRoleById(req, res) {
-    const roleID = req.params.id;
-    const role = await this.roleService.getById(parseInt(roleID));
+    const roleID = req.params.code;
+    console.log(roleID)
+    const role = await this.roleService.getById(roleID);
     if (!role) {
       return res.status(404).json({ message: "Rol no encontrado" });
     }
@@ -22,8 +23,8 @@ export class RoleController {
   }
 
   async updateRole(req, res) {
-    const roleID = req.params.id;
-    const role = await this.roleService.update(parseInt(roleID), req.body);
+    const roleID = req.params.code;
+    const role = await this.roleService.update(roleID, req.body);
     if (!role) {
       return res.status(404).json({ message: "Rol no encontrado" });
     }
@@ -31,8 +32,8 @@ export class RoleController {
   }
 
   async deleteRole(req, res) {
-    const roleID = req.params.id;
-    const deleted = await this.roleService.delete(parseInt(roleID));
+    const roleID = req.params.code;
+    const deleted = await this.roleService.delete(roleID);
     if (!deleted) {
       return res.status(404).json({ message: "Rol no encontrado" });
     }

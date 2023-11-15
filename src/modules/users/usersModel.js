@@ -1,13 +1,6 @@
-import { Model, DataTypes } from "sequelize";
-
+import {Model,Schema } from "mongoose"
+const schema =  new Schema({})
 class UserModel extends Model {
-  static associate(models) {
-    this.belongsTo(models.roles, {
-      foreignKey: "rol_id",
-      targetKey: "id",
-    });
-  }
-
   static init(sequelize) {
     return super.init(
       {

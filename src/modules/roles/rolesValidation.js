@@ -9,7 +9,7 @@ class RoleValidation {
     return this.celebrate({
       [Segments.PARAMS]: Joi.object()
         .keys({
-          id: Joi.number().integer().required(),
+          code: Joi.string().required(),
         })
         .required(),
     });
