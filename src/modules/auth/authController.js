@@ -10,7 +10,6 @@ export class AuthController {
       const user = await this.authService.signIn(req.body);
       return res.status(200).json(createToken(user.id));
     } catch (e) {
-      console.log("mierror", e, e.code)
       return res.status(e.code).json({ message: e.message });
     }
   }

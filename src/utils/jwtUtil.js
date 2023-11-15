@@ -2,7 +2,6 @@ import { sign, verify } from "jsonwebtoken";
 import config from "../config/authConfig";
 
 export const createToken = (identity) => {
-  console.log("Config:", config);
   const { secretKey, accessExpire, refreshExpire } = config;
 
   const accessToken = sign({ identity }, secretKey, {
@@ -20,7 +19,5 @@ export const createToken = (identity) => {
 };
 
 export const verifyToken = (token) => {
-  console.log("Verifying token with secret key:", config.secretKey);
-
   return verify(token, config.secretKey);
 };

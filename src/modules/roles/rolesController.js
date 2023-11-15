@@ -9,7 +9,6 @@ export class RoleController {
 
   async getRoleById(req, res) {
     const roleID = req.params.code;
-    console.log(roleID)
     const role = await this.roleService.getById(roleID);
     if (!role) {
       return res.status(404).json({ message: "Rol no encontrado" });

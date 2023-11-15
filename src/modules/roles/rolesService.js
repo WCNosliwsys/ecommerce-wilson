@@ -11,7 +11,6 @@ export class RoleService extends RoleInterface {
   }
 
   async getById(code) {
-    console.log(code)
     return await this.roleModel.findOne({ code });
   }
 
@@ -22,8 +21,7 @@ export class RoleService extends RoleInterface {
   async update(id, body) {
     const role = await this.getById(id);
     if (role) {
-      const test= await role.updateOne(body);
-      console.log(test)
+      await role.updateOne(body);
     }
     return role;
   }

@@ -11,6 +11,5 @@ export default async ()=>{
     production:{}
   }
   const {uri,options} =enviroment[process.env.NODE_ENV]
-  console.log(uri)
   return await connect(uri,options)
 }
