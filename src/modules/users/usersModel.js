@@ -22,8 +22,9 @@ const schema =  new Schema(
       type: String,
       required: true,
     },
-    rol_code: {
+    rol: {
       type: String,
+      default:"user"
     },
     status: {
       type: Boolean,
@@ -43,7 +44,7 @@ const schema =  new Schema(
       role: {
         options: {
           ref: "roles",
-          localField: "rol_code",
+          localField: "rol",
           foreignField: "code",
           justOne: true,
         },
