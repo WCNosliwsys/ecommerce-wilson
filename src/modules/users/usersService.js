@@ -9,7 +9,21 @@ export class UserService extends UserInterface {
   }
 
   async getAll() {
-    return await this.userModel.find();
+    return await this.userModel.find({
+      status: true,
+    }) 
+    .populate([
+      {
+        path: "role",
+        select: ["-status", "-created_at", "-updated_at"],
+      },
+    ])
+    .select(["-password"])
+    .sort({
+      // -1 -> DESC
+      // 1 -> ASC
+      created_at: 1,
+    });
   }
 
   async getById(username) {

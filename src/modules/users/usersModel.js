@@ -36,6 +36,19 @@ const schema =  new Schema(
       createdAt: "created_at",
       updatedAt: "updated_at",
     },
+    toJSON: {
+      virtuals: true,
+    },
+    virtuals: {
+      role: {
+        options: {
+          ref: "roles",
+          localField: "rol_code",
+          foreignField: "code",
+          justOne: true,
+        },
+      },
+    },
   }
 )
 class UserModel extends Model {}
