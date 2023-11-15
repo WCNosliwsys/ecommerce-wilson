@@ -2,14 +2,15 @@ import { Router } from "express";
 import { AuthService } from "./authService";
 import { UserPasswordService } from "../users/usersPasswordService";
 import { UserService } from "../users/usersService";
+import usersModel from "../users/usersModel";
 import { AuthController } from "./authController";
 
 class AuthRouter {
   constructor() {
     this.router = Router();
-    this.model = "";
+    this.model = usersModel;
     this.servicePassword = new UserPasswordService();
-    this.serviceUser = new UserService("", this.servicePassword);
+    this.serviceUser = new UserService(this.model, this.servicePassword);
     this.service = new AuthService(
       this.model,
       this.servicePassword,

@@ -9,8 +9,8 @@ export class UserController {
 
   async getUserById(req, res) {
     try {
-      const userID = req.params.id;
-      const user = await this.userService.getById(parseInt(userID));
+      const userID = req.params.username;
+      const user = await this.userService.getById(userID);
       return res.json(user);
     } catch (e) {
       return res.status(e.code).json({ message: e.message });
@@ -24,8 +24,8 @@ export class UserController {
 
   async updateUser(req, res) {
     try {
-      const userID = req.params.id;
-      const user = await this.userService.update(parseInt(userID), req.body);
+      const userID = req.params.username;
+      const user = await this.userService.update(userID, req.body);
       return res.json(user);
     } catch (e) {
       return res.status(e.code).json({ message: e.message });
@@ -34,8 +34,8 @@ export class UserController {
 
   async deleteUser(req, res) {
     try {
-      const userID = req.params.id;
-      await this.userService.delete(parseInt(userID));
+      const userID = req.params.username;
+      await this.userService.delete(userID);
       return res.status(204).send("");
     } catch (e) {
       return res.status(e.code).json({ message: e.message });

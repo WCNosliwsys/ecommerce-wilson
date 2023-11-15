@@ -7,13 +7,10 @@ export class AuthService extends AuthInterface {
     this.userService = userService;
   }
 
-  async _getByUsername(username) {
-    return await this.userModel.findOne({ where: { username } });
-  }
 
   async signIn(body) {
     const { username, password } = body;
-    const user = await this._getByUsername(username);
+    const user = await this.userService.getById(username);
     if (user) {
       const validatePassword = await this.passwordService.validatePassword(
         user.password,

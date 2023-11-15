@@ -3,13 +3,15 @@ import { Router } from "express";
 import { UserService } from "./usersService";
 import { UserPasswordService } from "./usersPasswordService";
 import { UserController } from "./usersController";
+import usersModel from "./usersModel";
 import { isAuthenticated } from "../../middlewares/authenticationMiddleware";
 
 class UserRouter {
   constructor() {
     this.router = Router();
+    this.model=usersModel
     this.servicePassword = new UserPasswordService();
-    this.service = new UserService("", this.servicePassword);
+    this.service = new UserService(this.model, this.servicePassword);
     this.controller = new UserController(this.service);
   }
 
@@ -23,9 +25,9 @@ class UserRouter {
          */
         .get("/", (req, res) => this.controller.getAllUsers(req, res))
         .post("/", (req, res) => this.controller.createUser(req, res))
-        .get("/:id", (req, res) => this.controller.getUserById(req, res))
-        .patch("/:id", (req, res) => this.controller.updateUser(req, res))
-        .delete("/:id", (req, res) => this.controller.deleteUser(req, res))
+        .get("/:username", (req, res) => this.controller.getUserById(req, res))
+        .patch("/:username", (req, res) => this.controller.updateUser(req, res))
+        .delete("/:username", (req, res) => this.controller.deleteUser(req, res))
     );
   }
 }

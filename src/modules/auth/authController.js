@@ -6,15 +6,13 @@ export class AuthController {
   }
 
   async login(req, res) {
-    const user = await this.authService.signIn(req.body);
-    // Validar usuario exista y este activo
-    // Validar la contraseña
-    if (!user) {
-      return res
-        .status(404)
-        .json({ message: "Usuario no encontrado y/o contraseña incorrecta" });
+    try {
+      const user = await this.authService.signIn(req.body);
+      return res.status(200).json(createToken(user.id));
+    } catch (e) {
+      console.log("mierror", e, e.code)
+      return res.status(e.code).json({ message: e.message });
     }
-    return res.status(200).json(createToken(user.id));
   }
 
   async register(req, res) {
