@@ -1,6 +1,7 @@
 import express from "express";
 import bodyParser from "body-parser";
 import { errors } from "celebrate";
+import cors from "cors"
 import routers from "../infrastructure/routers";
 
 export class ExpressConfig {
@@ -13,6 +14,7 @@ export class ExpressConfig {
 
   _setMiddleware() {
     this.app.use(bodyParser.json());
+    this.app.use(cors({origin:"*"}))
   }
 
   _setRouters() {
