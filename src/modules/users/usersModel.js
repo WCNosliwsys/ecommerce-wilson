@@ -1,22 +1,22 @@
 import {Model,Schema,model } from "mongoose"
 const schema =  new Schema(
   {
-    name: {
+    firstname: {
       type: String,
       required: true,
     },
-    last_name: {
+    lastname: {
       type: String,
       required: true,
     },
-    username: {
+    address: {
       type: String,
       required: true,
-      unique: true,
     },
     email: {
       type: String,
       required: true,
+      unique: true,
     },
     password: {
       type: String,

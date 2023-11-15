@@ -25,9 +25,9 @@ class UserRouter {
          */
         .get("/", (req, res) => this.controller.getAllUsers(req, res))
         .post("/", (req, res) => this.controller.createUser(req, res))
-        .get("/:username", (req, res) => this.controller.getUserById(req, res))
-        .patch("/:username", (req, res) => this.controller.updateUser(req, res))
-        .delete("/:username", (req, res) => this.controller.deleteUser(req, res))
+        .get("/:email", (req, res) => this.controller.getUserById(req, res))
+        .patch("/:email", (req, res) => this.controller.updateUser(req, res))
+        .delete("/:email", (req, res) => this.controller.deleteUser(req, res))
     );
   }
 }

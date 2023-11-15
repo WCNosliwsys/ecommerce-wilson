@@ -9,7 +9,7 @@ export class UserController {
 
   async getUserById(req, res) {
     try {
-      const userID = req.params.username;
+      const userID = req.params.email;
       const user = await this.userService.getById(userID);
       return res.json(user);
     } catch (e) {
@@ -24,7 +24,7 @@ export class UserController {
 
   async updateUser(req, res) {
     try {
-      const userID = req.params.username;
+      const userID = req.params.email;
       const user = await this.userService.update(userID, req.body);
       return res.json(user);
     } catch (e) {
@@ -34,7 +34,7 @@ export class UserController {
 
   async deleteUser(req, res) {
     try {
-      const userID = req.params.username;
+      const userID = req.params.email;
       await this.userService.delete(userID);
       return res.status(204).send("");
     } catch (e) {

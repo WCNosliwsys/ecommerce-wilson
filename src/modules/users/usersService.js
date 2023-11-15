@@ -26,8 +26,8 @@ export class UserService extends UserInterface {
     });
   }
 
-  async getById(username) {
-    const user = await this.userModel.findOne({ username });
+  async getById(email) {
+    const user = await this.userModel.findOne({ email });
     if (!user) {
       throw new UserNotFound();
     }
