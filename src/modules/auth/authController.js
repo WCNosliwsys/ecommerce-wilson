@@ -8,7 +8,9 @@ export class AuthController {
   async login(req, res) {
     try {
       const user = await this.authService.signIn(req.body);
+      if(!user) return res.status(401).json({ message: "contraseña incorecta" });
       return res.status(200).json(createToken(user.id));
+      
     } catch (e) {
       return res.status(e.code).json({ message: e.message });
     }
