@@ -37,8 +37,9 @@ export class UserService extends UserInterface {
   async create(body) {
     const hashPassword = await this.passwordService.hashPassword(body.password);
     body.password = hashPassword;
-    const productData = { ...body, code: productCode };
-    return await this.userModel.create(body);
+    const userCode = await getNextCode('userCode');
+    const userData = { ...body, code: userCode };
+    return await this.userModel.create(userData);
   }
 
   async update(id, body) {
@@ -57,6 +58,8 @@ export class UserService extends UserInterface {
 
     return user;
   }
+
+  
 
   async delete(id) {
     const user = await this.getById(id);

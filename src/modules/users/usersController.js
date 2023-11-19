@@ -31,6 +31,16 @@ export class UserController {
       return res.status(e.code).json({ message: e.message });
     }
   }
+  async updatePerfil(req, res) {
+    console.log("Actualizando perfil")
+    try {
+      const userID = req.current_user;
+      const user = await this.userService.update(userID, req.body);
+      return res.json(user);
+    } catch (e) {
+      return res.status(e.code).json({ message: e.message });
+    }
+  }
 
   async deleteUser(req, res) {
     try {
