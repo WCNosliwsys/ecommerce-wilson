@@ -23,6 +23,10 @@ const orderSchema = new Schema(
           type: Number,
           required: true,
         },
+        precio: {
+          type: Number,
+          required: true,
+        },
       },
     ],
     total: {

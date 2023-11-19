@@ -2,6 +2,7 @@ import { Router } from "express";
 import { OrderService } from "./ordersService";
 import { OrderController } from "./ordersController";
 import ordersModel from "./ordersModel";
+import productsModel from "../products/productsModel";
 import { isAuthenticated } from "../../middlewares/authenticationMiddleware";
 import Validation from "./ordersValidation";
 
@@ -9,7 +10,7 @@ class OrderRouter {
   constructor() {
     this.router = Router();
     this.model =ordersModel;
-    this.service = new OrderService(this.model);
+    this.service = new OrderService(this.model,productsModel);
     this.controller = new OrderController(this.service);
   }
 

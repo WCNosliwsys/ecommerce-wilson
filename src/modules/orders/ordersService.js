@@ -1,9 +1,10 @@
 import { OrderInterface } from "./ordersInterface";
 import { getNextCode } from "../sequences/nextSequence";
 export class OrderService extends OrderInterface {
-  constructor(orderModel) {
+  constructor(orderModel, productModel) {
     super();
     this.orderModel = orderModel;
+    this.productModel = productModel;
   }
 
   async getAll() {
@@ -16,7 +17,24 @@ export class OrderService extends OrderInterface {
 
   async create(body) {
     const orderCode = await getNextCode('orderCode');
-    const orderData = { ...body, code: orderCode };
+    const itemsWithPrices = await Promise.all(body.items.map(async (item) => {
+      const product = await this.productModel.findOne({ code: item.code });
+      return {
+        ...item,
+        precio: product.precio,
+      };
+    }));
+
+    const total = itemsWithPrices.reduce((acc, item) => acc + item.precio * item.cantidad, 0);
+    const fecha = Date.now();
+    const orderData = {
+      ...body,
+      code: orderCode,
+      items: itemsWithPrices,
+      total,
+      fecha
+    };
+
     return await this.orderModel.create(orderData);
   }
 
