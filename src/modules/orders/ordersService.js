@@ -1,5 +1,5 @@
 import { OrderInterface } from "./ordersInterface";
-import SequenceModel from '../sequences/sequenceModel';
+import { getNextCode } from "../sequences/nextSequence";
 export class OrderService extends OrderInterface {
   constructor(orderModel) {
     super();
@@ -14,19 +14,8 @@ export class OrderService extends OrderInterface {
     return await this.orderModel.findOne({ code });
   }
 
-  async getNextCode() {
-    const sequenceName = 'orderCode'; // Puedes usar un nombre descriptivo para la secuencia
-    const sequence = await SequenceModel.findOneAndUpdate(
-      { name: sequenceName },
-      { $inc: { value: 1 } },
-      { new: true, upsert: true }
-    );
-
-    return sequence.value;
-  }
-
   async create(body) {
-    const orderCode = await this.getNextCode();
+    const orderCode = await getNextCode('orderCode');
     const orderData = { ...body, code: orderCode };
     return await this.orderModel.create(orderData);
   }

@@ -1,5 +1,5 @@
 import { ProductInterface } from "./productsInterface";
-import SequenceModel from '../sequences/sequenceModel';
+import { getNextCode } from "../sequences/nextSequence";
 export class ProductService extends ProductInterface {
   constructor(productModel) {
     super();
@@ -14,19 +14,8 @@ export class ProductService extends ProductInterface {
     return await this.productModel.findOne({ code });
   }
 
-  async getNextCode() {
-    const sequenceName = 'productCode'; // Puedes usar un nombre descriptivo para la secuencia
-    const sequence = await SequenceModel.findOneAndUpdate(
-      { name: sequenceName },
-      { $inc: { value: 1 } },
-      { new: true, upsert: true }
-    );
-
-    return sequence.value;
-  }
-
   async create(body) {
-    const productCode = await this.getNextCode();
+    const productCode = await getNextCode('productCode');
     const productData = { ...body, code: productCode };
     return await this.productModel.create(productData);
   }

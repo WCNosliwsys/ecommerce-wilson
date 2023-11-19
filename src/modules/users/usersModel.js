@@ -1,6 +1,11 @@
 import {Model,Schema,model } from "mongoose"
 const schema =  new Schema(
   {
+    code: {
+      type: Number,
+      required: true,
+      unique: true,
+    },
     firstname: {
       type: String,
       required: true,

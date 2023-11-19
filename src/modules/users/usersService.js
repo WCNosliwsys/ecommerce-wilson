@@ -1,6 +1,6 @@
 import { UserInterface } from "./usersInterface";
 import { UserNotFound } from "./usersException";
-
+import { getNextCode } from "../sequences/nextSequence";
 export class UserService extends UserInterface {
   constructor(userModel, passwordService) {
     super();
@@ -37,6 +37,7 @@ export class UserService extends UserInterface {
   async create(body) {
     const hashPassword = await this.passwordService.hashPassword(body.password);
     body.password = hashPassword;
+    const productData = { ...body, code: productCode };
     return await this.userModel.create(body);
   }
 
