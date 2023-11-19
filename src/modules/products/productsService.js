@@ -1,5 +1,5 @@
 import { ProductInterface } from "./productsInterface";
-import SequenceModel from './sequenceModel';
+import SequenceModel from '../sequences/sequenceModel';
 export class ProductService extends ProductInterface {
   constructor(productModel) {
     super();
@@ -34,7 +34,7 @@ export class ProductService extends ProductInterface {
   async update(id, body) {
     const product = await this.getById(id);
     if (product) {
-      const test= await product.updateOne(body);
+      const test = await product.updateOne(body);
     }
     return product;
   }
