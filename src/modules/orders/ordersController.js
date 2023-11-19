@@ -6,6 +6,14 @@ export class OrderController {
   async getAllOrders(req, res) {
     return res.json(await this.orderService.getAll());
   }
+  async getAllOrdersByUser(req, res) {
+    try {
+      const userID = req.current_user.code;
+      return res.json(await this.orderService.getAllByUser(userID));
+    } catch (e) {
+      return res.status(e.code).json({ message: e.message });
+    }
+  }
 
   async getOrderById(req, res) {
     const orderID = req.params.code;
@@ -17,8 +25,12 @@ export class OrderController {
   }
 
   async createOrder(req, res) {
-    const order = await this.orderService.create(req.body);
-    return res.status(201).json(order);
+    try {
+      const order = await this.orderService.create(req.body);
+      return res.status(201).json(order);
+    } catch (e) {
+      return res.status(400).json({ message: "No se pudo completar la transacción. Verifica los detalles de la orden e intenta nuevamente." });
+    }
   }
 
   async updateOrder(req, res) {

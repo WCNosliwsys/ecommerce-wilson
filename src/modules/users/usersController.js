@@ -34,7 +34,8 @@ export class UserController {
   async updatePerfil(req, res) {
     console.log("Actualizando perfil")
     try {
-      const userID = req.current_user;
+      console.log( req.current_user)
+      const userID = req.current_user.email;
       const user = await this.userService.update(userID, req.body);
       return res.json(user);
     } catch (e) {

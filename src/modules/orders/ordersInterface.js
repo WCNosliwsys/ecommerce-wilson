@@ -5,5 +5,5 @@ export class OrderInterface {
   update(id, body) {}
   delete(id) {}
   //getAllByUser(id){}
-  
+  getAllByUser(codUser){}
 }

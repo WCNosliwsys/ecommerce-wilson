@@ -15,9 +15,11 @@ class OrderRouter {
   }
 
   init() {
-    // this.router.use(isAuthenticated);
+    this.router.use(isAuthenticated);
     return this.router
       .get("/", (req, res) => this.controller.getAllOrders(req, res))
+      .get("/mis_ordenes", (req, res) => this.controller.getAllOrdersByUser(req, res))
+
       .post("/", (req, res) => this.controller.createOrder(req, res))
       .get("/:code", Validation.getById(), (req, res) =>
         this.controller.getOrderById(req, res)

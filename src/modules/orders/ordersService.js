@@ -10,6 +10,9 @@ export class OrderService extends OrderInterface {
   async getAll() {
     return await this.orderModel.find();
   }
+  async getAllByUser(codUser) {
+    return await this.orderModel.find({ 'cliente.codUser': codUser });
+  }
 
   async getById(code) {
     return await this.orderModel.findOne({ code });
