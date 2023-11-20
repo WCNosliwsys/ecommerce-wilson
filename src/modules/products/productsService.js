@@ -14,7 +14,6 @@ export class ProductService extends ProductInterface {
     return await this.productModel.findOne({ code });
   }
   async retrieveByCodes(cod_products) {
-    console.log(cod_products)
     return await this.productModel.find({ code: { $in: cod_products } });
   }
 

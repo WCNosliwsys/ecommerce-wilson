@@ -9,8 +9,6 @@ export class AuthController {
     try {
       const user = await this.authService.signIn(req.body);
       if(!user) return res.status(401).json({ message: "contraseña incorecta" });
-      console.log("creandoToken",user.id)
-      console.log("datosCrearToken", user)
       const mitoken={email:user.email, code:user.code}
       return res.status(200).json(createToken(mitoken));
       
