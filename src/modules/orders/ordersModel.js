@@ -1,21 +1,25 @@
 import { Model, Schema, model } from "mongoose";
 import productsModel from "../products/productsModel";
 
-const itemSchema = new Schema({
-  _id: false,
-  code: {
-    type: Number,
-    required: true,
-  },
-  cantidad: {
-    type: Number,
-    required: true,
-  },
-  precio: {
-    type: Number,
-    required: true,
-  },
-});
+// const itemSchema = new Schema({
+//   _id: false,
+//   code: {
+//     type: Number,
+//     required: true,
+//   },
+//   nombre: {
+//     type: String,
+//     required: true,
+//   },
+//   cantidad: {
+//     type: Number,
+//     required: true,
+//   },
+//   precio: {
+//     type: Number,
+//     required: true,
+//   },
+// });
 const orderSchema = new Schema(
   {
     code: {
@@ -29,7 +33,27 @@ const orderSchema = new Schema(
         required: true,
       },
     },
-    items: [itemSchema],
+    items: [
+      {
+        _id: false,
+        code: {
+          type: Number,
+          required: true,
+        },
+        nombre: {
+          type: String,
+          required: true,
+        },
+        cantidad: {
+          type: Number,
+          required: true,
+        },
+        precio: {
+          type: Number,
+          required: true,
+        },
+      }
+    ],
     total: {
       type: Number,
       required: true,

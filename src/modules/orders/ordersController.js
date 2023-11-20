@@ -32,6 +32,7 @@ export class OrderController {
 
   async createOrder(req, res) {
     try {
+      console.log("ingresamos")
       const order = await this.orderService.create(req.body);
       return res.status(201).json(order);
     } catch (e) {

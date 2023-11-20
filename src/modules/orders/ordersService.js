@@ -19,6 +19,7 @@ export class OrderService extends OrderInterface {
   }
 
   async create(body) {
+    console.log("wilbody", body)
     const orderCode = await getNextCode('orderCode');
     const productUpdates = [];
   
@@ -41,16 +42,17 @@ export class OrderService extends OrderInterface {
   
     // Obtén los precios de los productos
     const products = await this.productModel.find({ code: { $in: body.items.map(item => item.code) } });
-  
+    console.log("wilproducts",products)
     // Mapea los precios de los productos al cuerpo de la orden
     const itemsWithPrices = body.items.map(item => {
       const product = products.find(product => product.code === item.code);
       return {
         ...item,
         precio: product ? product.precio : 0, // Asumiendo un valor predeterminado si no se encuentra el producto
+        nombre: product ? product.nombre : "", // Asumiendo un valor predeterminado si no se encuentra el producto
       };
     });
-  
+    console.log("wilpricing",itemsWithPrices)
     const total = itemsWithPrices.reduce((acc, item) => acc + item.precio * item.cantidad, 0);
     const fecha = Date.now();
   
@@ -61,7 +63,7 @@ export class OrderService extends OrderInterface {
       total,
       fecha,
     };
-  
+    console.log("ordenLista", orderData)
     // Crea la orden en la base de datos
     const order = await this.orderModel.create(orderData);
   
