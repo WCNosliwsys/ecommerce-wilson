@@ -4,7 +4,13 @@ export class OrderController {
   }
 
   async getAllOrders(req, res) {
-    return res.json(await this.orderService.getAll());
+    try{
+
+      return res.json(await this.orderService.getAll());
+    }
+    catch(e){
+      console.log("wilerror",e)
+    }
   }
   async getAllOrdersByUser(req, res) {
     try {

@@ -18,6 +18,7 @@ class ProductRouter {
     return this.router
       .get("/", (req, res) => this.controller.getAllProducts(req, res))
       .post("/", (req, res) => this.controller.createProduct(req, res))
+      .post("/retrieveByCodes", (req, res) => this.controller.retrieveByCodes(req, res))
       .get("/:code", Validation.getById(), (req, res) =>
         this.controller.getProductById(req, res)
       )

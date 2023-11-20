@@ -15,6 +15,11 @@ export class ProductController {
     }
     return res.json(product);
   }
+  async retrieveByCodes(req, res) {
+    const { cod_products } = req.body;
+    const products = await this.productService.retrieveByCodes(cod_products);
+    return res.json(products);
+  }
 
   async createProduct(req, res) {
     const product = await this.productService.create(req.body);
