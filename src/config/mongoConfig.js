@@ -5,11 +5,20 @@ export default async ()=>{
     development:{
       uri: `${process.env.DB_DRIVER}://${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`,
       options:{
-        // useNewUrlParser:true,
+        // useNewUrlParser: true,
+        // useUnifiedTopology: true,
       }
     },
-    production:{}
+    production:{
+      uri:`${process.env.MONGO_URI}`,
+      options:{
+        dbName:process.env.DB_NAME,
+        useUnifiedTopology:true
+      }
+    }
   }
   const {uri,options} =enviroment[process.env.NODE_ENV]
+  console.log(uri)
+  console.log(options)
   return await connect(uri,options)
 }
