@@ -1,37 +1,40 @@
-# Nodejs Sesion
+# Ecommerce Pisos Wilson
 
-### Principios SOLID
+Aplicación backend para una tienda de pisos en línea. 
 
-- S (SRP), Principio de responsabilidad unica
-- O (OCP), Principio de Abierto/Cerrado
-- L (LSP), Principio de sustitución de Liskov
-- I (ISP), Principio de segregacion de interfaces
-- D (DSP), Principio de inversion de dependencia
+## Tecnologías
 
-# Documentación
+- Node.js 
+- Express
+- MongoDB
+- JWT
 
-# Comandos
+## Instalación
 
-- Iniciar la aplicación (Modo Dev)
+1. Clona este repositorio
+2. Ejecuta `npm install` para instalar las dependencias
+3. Renombra el archivo `.env.example` a `.env`
+4. Completa las variables de entorno en el archivo `.env` 
+5. Ejecuta `npm run dev` para iniciar el servidor de desarrollo
 
-```sh
-npm run dev
-```
+## Funcionalidades
 
-- Crear una migración
+- Autenticación y autorización de usuarios
+- CRUD de productos
+- CRUD de órdenes
+- Manejo de carrito de compras
+- Integración con pasarela de pagos
 
-```sh
-npx makemigration --name nombre_migracion
-```
+## Contribuciones
 
-- Ejecutar migración (Sincronizar)
+Las contribuciones son bienvenidas! Sigue estos pasos:
 
-```sh
-npx runmigration
-```
-CRUD PRODUCTOS
-CRUD ORDERS
-AÑADIENDO MÁS CAMPOS AL USER
-AGREGANDO MODELO SEQUENCE encargado de codigos unicos
-INTEGRACIÓN CON FRONTEND
-leyendo el dato del token para actualizar
+1. Fork este repositorio
+2. Crea una rama para tu feature (`git checkout -b feature/mi-feature`)
+3. Commitea tus cambios (`git commit -am 'Agregando mi feature'`)
+4. Haz push a la rama (`git push origin feature/mi-feature`)
+5. Crea un nuevo Pull Request
+
+## Licencia
+
+Este proyecto está bajo la Licencia MIT. 
