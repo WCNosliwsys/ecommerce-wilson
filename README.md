@@ -29,3 +29,9 @@ npx makemigration --name nombre_migracion
 ```sh
 npx runmigration
 ```
+CRUD PRODUCTOS
+CRUD ORDERS
+AÑADIENDO MÁS CAMPOS AL USER
+AGREGANDO MODELO SEQUENCE encargado de codigos unicos
+INTEGRACIÓN CON FRONTEND
+leyendo el dato del token para actualizar
